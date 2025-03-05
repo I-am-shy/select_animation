@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .bg {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      background-color: #969696;
+    }
+
+    .win {
+      width: 600px;
+      height: 400px;
+      background-color: #cfcfcf;
+      border-radius: 10px;
+    }
+
+    .win_header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 40px;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .win_header_setting {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      width: 100px;
+      height: 100%;
+      border-radius: 10px 0 0 0;
+    }
+
+    .win_header_setting .icon {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: #000;
+      transition: transform 0.3s ease;
+    }
+
+    .win_header_setting .icon:nth-child(1) {
+      background-color: #ff3838;
+    }
+
+    .win_header_setting .icon:nth-child(2) {
+      background-color: #68ff68;
+    }
+
+    .win_header_setting .icon:nth-child(3) {
+      background-color: #fffa78;
+    }
+
+    .win_header_setting .icon:hover {
+      transform: scale(1.2);
+    }
+
+    .win_header_title {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 0 10px 0 0;
+    }
+
+    .win_header_title span {
+      font-size: 16px;
+      font-weight: bold;
+      margin-left: -20%;
+    }
+
+    .win_body {
+      width: 100%;
+      height: calc(100% - 30px);
+      border-radius: 0 0 10px 10px;
+    }
+
+    hr {
+      margin: 0;
+      margin-left: 2.5%;
+      padding: 0;
+      width: 95%;
+      height: 1px;
+      background-color: #cccccc82;
+    }
+
+    .tip {
+      width: 100%;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .tip span {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .img {
+      width: 100%;
+      height: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .img_face {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      background-color: #e5ce75;
+      border: 2px solid #e5ce75;
+      border-radius: 50%;
+      transition:  0.3s ease;
+    }
+
+    .img_face:hover {
+      background: none;
+    }
+
+    .img_face::before {
+      display: block;
+      position: absolute;
+      content: '';
+      width: 40px;
+      height: 20px;
+      top: 58%;
+      left: 8%;
+      background-color: #feb8b8;
+      border-radius: 50%;
+    }
+
+    .img_face::after {
+      display: block;
+      position: absolute;
+      content: '';
+      width: 40px;
+      height: 20px;
+      top: 58%;
+      left: 72%;
+      background-color: #feb8b8;
+      border-radius: 50%;
+    }
+
+    .img_face .eye {
+      width: 60px;
+      height: 60px;
+      background-color: #e8e8e8;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .img_face .eye:nth-child(1) {
+      top: 30%;
+      left: 15%;
+    }
+
+    .img_face .eye:nth-child(2) {
+      top: 30%;
+      left: 55%;
+    }
+
+    .img_face .eye_ball {
+      width: 25px;
+      height: 25px;
+      background-color: #000;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: transform 0.05s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+
+    .img_face .mouth {
+      width: 100px;
+      height: 50px;
+      background-color: #dc3d3d;
+      border-radius: 40px 40px 100px 100px;
+      position: absolute;
+      top: 65%;
+      left: 25%;
+      transition: 0.3s ease;
+      overflow: hidden;
+    }
+
+    .img_face .teeth {
+      width: 20px;
+      height: 10px;
+      background-color: #e8e8e8;
+      margin-left: 50%;
+      margin-top: 1%;
+      border-radius: 0 0 5px 5px;
+    }
+
+    .img_face .tougue {
+      width: 50px;
+      height: 25px;
+      background-color: #bc0a0a;
+      margin-left: 18%;
+      margin-top: 17%;
+      border-radius: 20px 20px 0 0;
+    }
+
+    .select {
+      width: 100%;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .select button {
+      width: 80px;
+      height: 40px;
+      border-radius: 5px;
+      color: #fff;
+      border: none;
+      transition: transform 0.3s ease;
+    }
+
+    .select button:nth-child(1) {
+      background-color: #0caf00;
+      margin-right: 30%;
+    }
+
+    .select button:nth-child(2) {
+      background-color: #ff4444;
+      margin-left: 30%;
+    }
+
+    .select button:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg">
+    <div class="win">
+      <div class="win_header">
+        <div class="win_header_setting">
+          <div class="icon"></div>
+          <div class="icon"></div>
+          <div class="icon"></div>
+        </div>
+        <div class="win_header_title">
+          <span>标题</span>
+        </div>
+      </div>
+      <hr>
+      <div class="win_body">
+        <div class="tip">
+          <span>提示</span>
+        </div>
+        <div class="img">
+          <div class="img_face">
+            <div class="eye">
+              <div class="eye_ball"></div>
+            </div>
+            <div class="eye">
+              <div class="eye_ball"></div>
+            </div>
+            <div class="mouth">
+              <div class="teeth"></div>
+              <div class="tougue"></div>
+            </div>
+          </div>
+        </div>
+        <div class="select">
+          <button>确定</button>
+          <button>取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  function handleDrag(bgDom, winDom) {
+    if (bgDom) {
+      bgDom.draggable = true
+      bgDom.addEventListener("dragover", (e) => {
+        e.preventDefault()
+      });
+    }
+    if (winDom) {
+      winDom.draggable = true
+      // 记录鼠标移动的距离
+      let moveX = 0;
+      let moveY = 0;
+      winDom.addEventListener("dragstart", (e) => {
+        const current = winDom
+        if (current) {
+          moveX = e.clientX - current.offsetLeft;
+          moveY = e.clientY - current.offsetTop;
+        }
+      });
+      winDom.addEventListener("drag", (e) => {
+        const target = e.target
+        if (target) {
+          target.style.cursor = "move";
+          target.style.opacity = "0";
+          target.style.position = "absolute";
+          target.style.left = `${e.clientX - moveX}px`;
+          target.style.top = `${e.clientY - moveY}px`;
+        }
+      });
+      winDom.addEventListener("dragend", (e) => {
+        const target = e.target
+        if (target) {
+          target.style.cursor = "default";
+          target.style.opacity = "1";
+        }
+      });
+    }
+  }
+  
+  const bgDom = document.querySelector(".bg")
+  const winDom = document.querySelector(".win")
+  const eye1 = document.querySelector(".eye:nth-child(1) .eye_ball")
+  const eye2 = document.querySelector(".eye:nth-child(2) .eye_ball")
+  const eyes = document.querySelectorAll('.eye');
+  const face = document.querySelector(".img_face")
+  handleDrag(bgDom, winDom)
+
+  let animationFrameId;
+  let mouseX = 0;
+  let mouseY = 0;
+
+  // 鼠标移动时更新位置
+  winDom.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    
+    if (!animationFrameId) {
+      animationFrameId = requestAnimationFrame(updateEyeballs);
+    }
+  });
+
+  function updateEyeballs() {
+    eyes.forEach(eye => {
+      const eyeBall = eye.querySelector('.eye_ball');
+      const eyeRect = eye.getBoundingClientRect();
+      const eyeCenterX = eyeRect.left + eyeRect.width / 2;
+      const eyeCenterY = eyeRect.top + eyeRect.height / 2;
+      
+      const angle = Math.atan2(mouseY - eyeCenterY, mouseX - eyeCenterX);
+      const maxRadius = (eyeRect.width - 25) / 2;
+      const eyeBallX = Math.cos(angle) * maxRadius;
+      const eyeBallY = Math.sin(angle) * maxRadius;
+      
+      eyeBall.style.transform = `translate(calc(-50% + ${eyeBallX}px), calc(-50% + ${eyeBallY}px))`;
+    });
+
+    // 计算渐变效果
+    const faceRect = face.getBoundingClientRect();
+    const faceLeft = faceRect.left;
+    const faceRight = faceRect.right;
+    const faceTop = faceRect.top;
+    const faceBottom = faceRect.bottom;
+    
+    // 计算鼠标在人物区域的水平和垂直相对位置（0-1）
+    const xProgress = Math.max(0, Math.min(1, (mouseX - faceLeft) / (faceRight - faceLeft)));
+    const yProgress = Math.max(0, Math.min(1, (mouseY - faceTop) / (faceBottom - faceTop)));
+    
+    // 根据垂直位置调整动画进度
+    const animationProgress = xProgress * (1 + yProgress) / 2;
+    
+    // 计算渐变的起始位置（从上到下）
+    const gradientStart = Math.max(0, Math.min(100, animationProgress * 100));
+    
+    // 设置渐变背景
+    face.style.background = `linear-gradient(
+      to bottom,
+      #85af069d 0%,
+      #e5ce75 ${gradientStart}%,
+      #e5ce75 ${gradientStart}%,
+      #e5ce75 100%
+    )`;
+
+    // 添加嘴巴动画，同样使用调整后的进度
+    const mouth = face.querySelector('.mouth');
+    mouth.style.borderRadius = `${40 + animationProgress * 60}px ${40 + animationProgress * 60}px ${100 - animationProgress * 60}px ${100 - animationProgress * 60}px`;
+    
+    animationFrameId = requestAnimationFrame(updateEyeballs);
+  }
+
+  // 修改鼠标离开事件处理
+  winDom.addEventListener("mouseleave", () => {
+    if (animationFrameId) {
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = null;
+    }
+    
+    const eyeBalls = document.querySelectorAll('.eye_ball');
+    eyeBalls.forEach(eyeBall => {
+      eyeBall.style.transform = 'translate(-50%, -50%)';
+    });
+    
+    // 重置背景颜色为原始颜色
+    face.style.background = '#e5ce75';
+
+    // 重置嘴巴样式
+    const mouth = face.querySelector('.mouth');
+    mouth.style.borderRadius = '40px 40px 100px 100px';
+  });
+
+  // 添加关闭
+  const close = document.querySelector(".win_header_setting .icon:nth-child(1)")
+  close.addEventListener("click", (e) => {
+    e.stopPropagation(); // 阻止事件冒泡
+    winDom.style.display = "none"
+  })
+  
+  // 添加打开
+  bgDom.addEventListener("click", (e) => {
+    if (e.target === bgDom) { // 确保只有点击背景时才触发
+      winDom.style.display = "block"
+    }
+  })
+
+</script>
+
+</html>
