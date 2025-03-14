@@ -300,7 +300,7 @@
   // 持久化存储数据
   const title = document.querySelector(".win_header_title span")
   const tip = document.querySelector(".tip span")
-  document.onload = ()=>{
+  window.onload = ()=>{
     if(localStorage.getItem("title")){
       title.textContent = localStorage.getItem("title")
       document.title = localStorage.getItem("title")
