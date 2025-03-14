@@ -289,8 +289,8 @@
           </div>
         </div>
         <div class="select">
-          <button>✅好的</button>
-          <button>❌不行</button>
+          <button>好的</button>
+          <button>不行</button>
         </div>
       </div>
     </div>
@@ -307,7 +307,7 @@
     } 
     if(localStorage.getItem("tip")) title.textContent = localStorage.getItem("tip")
   }
-  window.addEventListener("close",e=>{
+  window.addEventListener("beforeunload",e=>{
     localStorage.setItem("title",title.textContent)
     localStorage.setItem("tip",tip.textContent)
   })
